@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Currency;
+use App\Services\AwesomeApiService;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 class CurrencyConverterTest extends TestCase
@@ -22,6 +24,10 @@ class CurrencyConverterTest extends TestCase
 
         $currency = Currency::where('base', $data['base'])->where('to', $data['to'])->first();
         $quotationUsed = $currency->value;
+
+        $this->partialMock(AwesomeApiService::class, function (MockInterface $mock) use ($quotationUsed) {
+            $mock->shouldReceive('getQuota')->andReturn($quotationUsed);
+        });
 
         $response = $this->json('GET', '/api/converter', $data);
 
