@@ -9,35 +9,13 @@ class Currency extends Model
 {
     use HasFactory;
 
-    public function dolarToReal()
+    public function scopeBase($query, $base)
     {
-
+        return $query->where('base', $base);
     }
 
-    public function dolarToEuro()
+    public function scopeTo($query, $to)
     {
-
+        return $query->where('to', $to);
     }
-    
-    public function realtoDolar()
-    {
-
-    }
-
-    public function realtoEuro()
-    {
-
-    }
-
-    public function euroToReal()
-    {
-
-    }
-    
-    public function euroToDolar()
-    {
-        
-    }
-
-
 }
