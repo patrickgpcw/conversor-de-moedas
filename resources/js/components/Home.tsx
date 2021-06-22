@@ -45,26 +45,37 @@ const Home = () => {
 
     return (
         <div>
-            <div>
-                <input type="text" value={value} onChange={handleChange}/>
-            </div>
-            <div>
-                <select value={base} onChange={handleBaseChange}>
-                    <option value="BRL">BRL</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                </select>
-            </div>
-            <div>
-                <select value={to} onChange={handleToChange} >
-                    <option value="BRL">BRL</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option> 
-                </select>
-            </div>
-            <button onClick={handleClick}>converter</button>
-            <div>
-                {result}
+            <div className="container d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
+                <div className="card h-auto" style={{width:"20rem"}}>
+                    <div className="card-body">
+                        <div className="mb-3">
+                            <label className="form-label">Digite o seu valor</label>
+                            <input className="form-control" type="text" value={value} onChange={handleChange}/>
+                        </div>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text">De:</span>
+                            <select className="form-select" value={base} onChange={handleBaseChange}>
+                                <option value="BRL">BRL</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text">Para:</span>
+                            <select className="form-select" value={to} onChange={handleToChange} >
+                                <option value="BRL">BRL</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option> 
+                            </select>
+                        </div>
+                        <button className="btn btn-primary w-100" onClick={handleClick}>Converter</button>
+                        <div className="d-flex justify-content-center my-3">
+                            <strong>
+                                {result || '-'}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
